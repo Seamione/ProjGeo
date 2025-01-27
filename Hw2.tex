@@ -16,7 +16,7 @@
 \lfoot{Ayodeji Simeon Farominiyi\\Colorado State University}
 \cfoot{\empty}
 \rfoot{Math 673: Algebraic Geometry\\Spring 2025}
-\rhead{Assignment \hwnum}
+\rhead{Assignment 2}
 \cfoot{\fbox{\thepage}}
 
 
@@ -28,101 +28,14 @@
 \usepackage{amsmath}
 \usepackage{amstext}
 \usepackage{amsfonts}
-\usepackage{672}
-\usepackage{sagetex}
-\usepackage{clipboard}
+%\usepackage{672}
+%%\usepackage{sagetex}
+%\usepackage{clipboard}
 
-\openclipboard{qclip}
+%\openclipboard{qclip}
 
 \begin{document}
-	
-	\begin{sagesilent}
-		R.<x,y> = QQ[]
-		def plotcurve(f):
-		return(Curve(f).plot((x,-1,1),(y,-1,1),axes=true,frame=false,ticks=[[],[]],linewidth=6))
-	\end{sagesilent}
-	
-	
-	\def\hwnum{14}
-	\begin{enumerate}
-		\item (8.5.1) \Paste{q.14.1}
-		\textbf{\underline{Solution}}
-		\begin{itemize}
-			\item [(a)] Given that $X = \calz(f)$
-			\begin{itemize}
-				\item[($\Longrightarrow)$]Suppose $P \in X$. Since $X = \calz(f)$, this implies that $f(P) = 0$. Therefore, in the Taylor expansion of $f$, the constant term vanishes, i.e.,$f_0=0$. Consequently, the smallest $r$ such that $f_r \neq 0$ must satisfy $r \geq 1$. Thus, $\mu _P(X) \ge 1$.
-				\item[($\Longleftarrow$)] Suppose $\mu _P(X) \ge 1$. This means that $f_0=f(P)=0$. Therefore, $P \in X$.
-			\end{itemize}
-			\item [(b)].
-			\begin{itemize}
-				\item [($\Longrightarrow$)] Suppose $X$ is singular at $P$. Then $f(P)=0 $ and both partial derivatives vanish. that is $(\dd {x}f)(P) = 0$ and $(\dd {y}f)(P) = 0$. This implies that in the Taylor expansion of $f$, the linear terms vanish, i.e., $f_0(P)=0 $ and $f_1(P)=0 $. Therefore, the smallest $r$ such that $f_r \neq 0$ must satisfy $r \geq 2$. Thus, $\mu _P(X) \ge 2$.
-				\item[($\Longleftarrow$)] Suppose $\mu _P(X) \ge 2$. Then it must be that $f_0(P)=0 $ and $f_1(P)=0 $ which means that both the partial derivatives  $(\dd {x}f)(P) $ and $(\dd {y}f)(P)$ vanish which is a condition for $P$ to be a singular point.
-			\end{itemize}
-		\end{itemize}
-		\item (8.5.2) \Paste{q.14.2}
-		\textbf{\underline{Solution}}
-		\begin{itemize}
-			\item [(a)]Recall that $X$ is singular at $P$ if and only if $(\dd {x_i}f)(P) = 0$ for each $i = 1, \cdots , n$.\\
-			In this case, $\dd {x}f(x,y) = -6xy + 8x$ and $\dd {y}f(x,y) = 4y^3 -6y^2 +2y -3x^2$. Now,
-			\begin{align*}
-				&\dd {x}f(x,y) = 0 \Longrightarrow -6xy + 8x = 0 \Longrightarrow 2x(4-3y) = 0\Longrightarrow (x,y) = (0,y) \text{ or } (x, 4/3)&\\&
-				\dd {y}f(x,y) = 0 \Longrightarrow 4y^3 -6y^2 +2y -3x^2 = 0 \Longrightarrow 2y(2y-1)(y-1) -3x^2 = 0&\\&
-				\Longrightarrow (x,y) = (0,0),(0,1/2) \text{ or } (0, 1) \text{ when } x =0 \text{ and }&\\
-				&(x,y) = \left( \dfrac{2\sqrt{10}}{9},\dfrac{4}{3}\right) ,\text{ or }\left( -\dfrac{2\sqrt{10}}{9},\dfrac{4}{3}\right)  \text{ when } y = 4/3
-			\end{align*}
-			The candidates for the singular points of $X$ are $(0,0),(0,1/2), (0, 1), \left( \dfrac{2\sqrt{10}}{9},\dfrac{4}{3}\right) ,\text{ and }\left( -\dfrac{2\sqrt{10}}{9},\dfrac{4}{3}\right) $. However, a singular point must be a vanishing point of $f(x,y)$. So we examine what happens to $f$ at these points:
-			\begin{itemize}
-				\item $f(0,0) = (0)^4 - 2(0)^3 + (0)^2 - 3(0)^2(0) + 2(0)^4 = 0$ 
-				\item $f(0,1/2) = (1/2)^4 - 2(1/2)^3 + (1/2)^2 - 3(0)^2(1/2) + 2(0)^4 = 0.0625 \neq 0$ 
-				\item $f(0,1) = (1)^4 - 2(1)^3 + (1)^2 - 3(0)^2(1) + 2(0)^4 = 0$
-				\item $f\left( \dfrac{2\sqrt{10}}{9},\dfrac{4}{3}\right) =f\left( -\dfrac{2\sqrt{10}}{9},\dfrac{4}{3}\right) =-1.29 \neq 0$
-			\end{itemize}
-			Therefore, the singular points of $X$ are $(0,0)$ and $(0,1)$.
-			\item [(b)] We already know that $$\dd {x}f(x,y) = f_x(x,y) = -6xy + 8x \text{ and } \dd {y}f(x,y) = f_y(x,y) = 4y^3 -6y^2 +2y -3x^2.$$ Next, we compute the second order partial derivatives:
-			\begin{align*}
-				f_{xx}(x,y) = -6y +8, f_{xy}(x,y) = -6x, \text{ and } f_{yy}(x,y) = 12y^2 -12y + 2
-			\end{align*}
-			Now, we examine each of the singular points using the second derivatives to compute the multiplicity (since we know from the previous exercise, that $\mu _{P}(X)\geq 2$ for singular point $P$):
-			\begin{itemize}
-				\item For $P = (0,0)$;
-				$
-				f_{xx}(P) = -6(0) +8 = 8 \neq 0.
-				$ This implies that $f_2 \neq 0$.\\
-				Thus,  $\mu _{(0,0)}(X)=2$
-				
-				\item For $P = (0,1)$;
-				$
-				f_{xx}(P) = -6(1) +8 = 2 \neq 0.
-				$ This implies that $f_2 \neq  0$.\\
-				Thus, $\mu _{(0,1)}(X)=2$.
-				
-			\end{itemize}
-		\end{itemize}
-		
-		\item (8.5.3) \Paste{q.14.3}
-		\textbf{\underline{Solution}}\\
-		The tangent cone of $C$ at $P$ is determined by the lowest-degree terms in the Taylor expansion that do not vanish at $P$.
-		\begin{itemize}
-			\item [(a)] Given $\alpha(x,y) = y -x^2, \alpha_x(x,y) = -2x,\alpha_y(x,y) = 1, \alpha_{xx}(x,y) =-2, \alpha_{yy}(x,y) =0$,  the Taylor expansion of $\alpha(x,y) = y -x^2$ is given by \\ $\alpha(x,y) =\alpha(a,b) + (-2a(x-a) + 1(y-b)) + \dfrac{1}{2}(-2(x-a)^2 ) + \cdots$\\
-			At $P = (0,0),\\ \alpha(x,y) = \alpha(0,0) + (-2(0)(x-0) + 1(y-0)) -(x-0)^2 + \cdots= 0 + y + \cdots$.\\
-			In this case, the lowest-degree nonzero term is linear, and the tangent cone is defined by: $y = 0$ which is simply the $x$-axis.
-			\item [(b)] The Taylor expansion of $\beta(x,y) = y^2 - x^3- x^2$ is given by \\$\beta(x,y) =\beta(a,b) + ((-3x^2-2x)(x-a) + 2y(y-b)) +\dfrac{1}{2}((-6x-2)(x-a)^2  +\\  2(y-b)^2) + \cdots$\\
-			At $P = (0,0);\\ \beta(x,y) = \beta(0,0) +  (0) -(x-0)^2 +(y-0)^2+ \cdots=y^2 -x^2 + \cdots$.\\
-			In this case, the lowest-degree nonzero term is the quadratic component, and the tangent cone is defined by: $y^2 = x^2$ 
-			\item [(c)]The Taylor expansion of $\gamma (x,y) = y^2 - x^3$ is given by \[\gamma(x,y) =\gamma(a,b) + (-3x^2(x-a) + 2y(y-b)) + \dfrac{1}{2}(-6x(x-a)^2 + 0(x-a)(y-b) + 2(y-b)^2) + \cdots\]
-			At $P = (0,0), \gamma(x,y) = \gamma(0,0) + (0) +(y-0)^2 + \cdots= 0 + y^2 + \cdots$.\\
-			In this case, the lowest-degree nonzero term is the quadratic component, and the tangent cone is defined by: $y^2 = 0 \Longrightarrow y = 0.$
-			\item [(d)] The Taylor expansion of $\delta (x,y) = (x^2+y^2)^2 + 3x^2 y - y^3$ is given by \\$\delta(x,y) =\delta(a,b) + (\delta_x(x,y)(x-a) + \delta_y(x,y)(y-b)) + \dfrac{1}{2}(\delta_{xx}(x,y)(x-a)^2 +2\delta_{xy}(x,y)(x-a)(y-b) + \delta_{yy}(x,y)(y-b)^2) + \delta_3(x,y)\cdots$\\
-			Where 
-			\begin{itemize}
-				\item $\delta_x(x,y) =4x^3 +4xy^2 +6xy , \delta_y(x,y)= 4x^2y + 4y^3 +3x^2 -3y^2$
-				\item $\delta_{xx}(x,y) =12x^2 +4y^2 +6y , \delta_{yy}(x,y)= 4x^2 + 12y^2 -6y$ and $\delta_{xy}(x,y)= 8xy+6x$
-				\item $\delta_{xxx}(x,y) =24x , \delta_{yyy}(x,y)= 24y -6, \delta_{xxy}(x,y)= 8y +6$ and $\delta_{yyx}(x,y)= 8x$
-			\end{itemize}
-			At $P = (0,0), \delta_0(x,y) = \delta_1(x,y)= \delta_2(x,y)= 0$ but notice that
-			\begin{align*}\delta_3(x,y)&= \dfrac{1}{6}(\delta_{xxx}(x-a)^3 + 3\delta_{xxy}(x-a)^2(y-b) + 3\delta_{yyx}(x-a)^2(y-b)+ \delta_{yyy}(y-b)^3)&\\
-				& = \dfrac{1}{6}(24x(x-a)^3 + 3(8y +6)(x-a)^2(y-b) + 3(8x)(x-a)^2(y-b)+ (24y -6)(y-b)^3) \end{align*}
-			Therefore, at $P = (0,0), \delta_3(x,y) = 3x^2y -y^3$ which is the lowest-degree nonzero term. Thus,  the tangent cone is defined by: $3x^2y -y^3= 0$
-		\end{itemize}
-	\end{enumerate}
+\begin{enumerate}	
+\item 
+\end{enumerate}
 \end{document}
